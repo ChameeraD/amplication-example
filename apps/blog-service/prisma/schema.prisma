@@ -1,5 +1,5 @@
-datasource postgres {
-  provider = "postgresql"
+datasource mongo {
+  provider = "mongodb"
   url      = env("DB_URL")
 }
 
@@ -10,7 +10,7 @@ generator client {
 model User {
   createdAt DateTime @default(now())
   firstName String?
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
   lastName  String?
   password  String
   roles     Json
@@ -19,22 +19,27 @@ model User {
 }
 
 model Blog {
-  author      String?
-  content     String?
-  createdAt   DateTime  @default(now())
-  id          String    @id @default(cuid())
-  publication String?
-  publishedAt DateTime?
-  title       String?
-  updatedAt   DateTime  @updatedAt
+  author        String?
+  content       String?
+  createdAt     DateTime  @default(now())
+  id            String    @id @default(auto()) @map("_id") @mongo.ObjectId
+  name          String?
+  publication   String?
+  publishedDate DateTime?
+  updatedAt     DateTime  @updatedAt
 }
 
-model Auther {
-  avatar    String?
-  bio       String?
+model Author {
   createdAt DateTime @default(now())
-  email     String?
-  id        String   @id @default(cuid())
+  id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
+  name      String
+  updatedAt DateTime @updatedAt
+}
+
+model Publication {
+  createdAt DateTime @default(now())
+  id        String   @id @default(auto()) @map("_id") @mongo.ObjectId
+  link      String?
   name      String?
   updatedAt DateTime @updatedAt
 }

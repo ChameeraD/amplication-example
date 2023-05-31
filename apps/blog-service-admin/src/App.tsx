@@ -13,10 +13,14 @@ import { BlogList } from "./blog/BlogList";
 import { BlogCreate } from "./blog/BlogCreate";
 import { BlogEdit } from "./blog/BlogEdit";
 import { BlogShow } from "./blog/BlogShow";
-import { AutherList } from "./auther/AutherList";
-import { AutherCreate } from "./auther/AutherCreate";
-import { AutherEdit } from "./auther/AutherEdit";
-import { AutherShow } from "./auther/AutherShow";
+import { AuthorList } from "./author/AuthorList";
+import { AuthorCreate } from "./author/AuthorCreate";
+import { AuthorEdit } from "./author/AuthorEdit";
+import { AuthorShow } from "./author/AuthorShow";
+import { PublicationList } from "./publication/PublicationList";
+import { PublicationCreate } from "./publication/PublicationCreate";
+import { PublicationEdit } from "./publication/PublicationEdit";
+import { PublicationShow } from "./publication/PublicationShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -36,7 +40,7 @@ const App = (): React.ReactElement => {
   return (
     <div className="App">
       <Admin
-        title={"Blog Service"}
+        title={"BlogService"}
         dataProvider={dataProvider}
         authProvider={jwtAuthProvider}
         theme={theme}
@@ -58,11 +62,18 @@ const App = (): React.ReactElement => {
           show={BlogShow}
         />
         <Resource
-          name="Auther"
-          list={AutherList}
-          edit={AutherEdit}
-          create={AutherCreate}
-          show={AutherShow}
+          name="Author"
+          list={AuthorList}
+          edit={AuthorEdit}
+          create={AuthorCreate}
+          show={AuthorShow}
+        />
+        <Resource
+          name="Publication"
+          list={PublicationList}
+          edit={PublicationEdit}
+          create={PublicationCreate}
+          show={PublicationShow}
         />
       </Admin>
     </div>

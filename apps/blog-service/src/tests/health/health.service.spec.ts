@@ -14,7 +14,7 @@ describe("Testing the HealthServiceBase", () => {
     });
     it("should return true if allow connection to db", async () => {
       //ARRANGE
-      prismaService.$queryRaw
+      prismaService.$runCommandRaw
         //@ts-ignore
         .mockReturnValue(Promise.resolve(true));
       //ACT
@@ -24,7 +24,7 @@ describe("Testing the HealthServiceBase", () => {
     });
     it("should return false if db is not available", async () => {
       //ARRANGE
-      prismaService.$queryRaw
+      prismaService.$runCommandRaw
         //@ts-ignore
         .mockReturnValue(Promise.reject(false));
       //ACT

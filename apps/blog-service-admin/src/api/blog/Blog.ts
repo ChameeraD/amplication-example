@@ -3,8 +3,8 @@ export type Blog = {
   content: string | null;
   createdAt: Date;
   id: string;
+  name: string | null;
   publication: string | null;
-  publishedAt: Date | null;
-  title: string | null;
+  publishedDate: Date | null;
   updatedAt: Date;
 };

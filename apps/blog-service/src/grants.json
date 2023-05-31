@@ -61,31 +61,61 @@
   },
   {
     "role": "user",
-    "resource": "Auther",
+    "resource": "Author",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Auther",
+    "resource": "Author",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Auther",
+    "resource": "Author",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Auther",
+    "resource": "Author",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Auther",
+    "resource": "Author",
+    "action": "read:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Publication",
+    "action": "read:own",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Publication",
+    "action": "create:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Publication",
+    "action": "update:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Publication",
+    "action": "delete:any",
+    "attributes": "*"
+  },
+  {
+    "role": "user",
+    "resource": "Publication",
     "action": "read:any",
     "attributes": "*"
   }

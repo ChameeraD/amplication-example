@@ -3,7 +3,8 @@ import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { BlogModule } from "./blog/blog.module";
-import { AutherModule } from "./auther/auther.module";
+import { AuthorModule } from "./author/author.module";
+import { PublicationModule } from "./publication/publication.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -22,7 +23,8 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     UserModule,
     BlogModule,
-    AutherModule,
+    AuthorModule,
+    PublicationModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

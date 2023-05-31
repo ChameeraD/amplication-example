@@ -47,6 +47,17 @@ class BlogUpdateInput {
   @Field(() => String, {
     nullable: true,
   })
+  name?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
   publication?: string | null;
 
   @ApiProperty({
@@ -58,18 +69,7 @@ class BlogUpdateInput {
   @Field(() => Date, {
     nullable: true,
   })
-  publishedAt?: Date | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  title?: string | null;
+  publishedDate?: Date | null;
 }
 
 export { BlogUpdateInput as BlogUpdateInput };

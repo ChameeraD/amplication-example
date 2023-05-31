@@ -61,6 +61,17 @@ class BlogWhereInput {
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
+  name?: StringNullableFilter;
+
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
+  })
+  @Type(() => StringNullableFilter)
+  @IsOptional()
+  @Field(() => StringNullableFilter, {
+    nullable: true,
+  })
   publication?: StringNullableFilter;
 
   @ApiProperty({
@@ -72,18 +83,7 @@ class BlogWhereInput {
   @Field(() => DateTimeNullableFilter, {
     nullable: true,
   })
-  publishedAt?: DateTimeNullableFilter;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  title?: StringNullableFilter;
+  publishedDate?: DateTimeNullableFilter;
 }
 
 export { BlogWhereInput as BlogWhereInput };

@@ -11,7 +11,7 @@ services:
       BCRYPT_SALT: ${BCRYPT_SALT}
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       JWT_EXPIRATION: ${JWT_EXPIRATION}
-      DB_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+      DB_URL: mongodb://${DB_USER}:${DB_PASSWORD}@db:27017/${DB_NAME}?authSource=admin
     depends_on:
       - migrate
   migrate:
@@ -23,26 +23,35 @@ services:
     working_dir: /app/server
     environment:
       BCRYPT_SALT: ${BCRYPT_SALT}
-      DB_URL: postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_NAME}
+      DB_URL: mongodb://${DB_USER}:${DB_PASSWORD}@db:27017/${DB_NAME}?authSource=admin
     depends_on:
       db:
         condition: service_healthy
   db:
-    image: postgres:12
+    image: mongo
     ports:
-      - ${DB_PORT}:5432
+      - ${DB_PORT}:27017
     environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    volumes:
-      - postgres:/var/lib/postgresql/data
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_REPLICA_SET_NAME: rs0
+    restart: always
+    entrypoint:
+      - /bin/bash
+      - -c
+      - openssl rand -base64 741 > /data/cert.crt; chmod 400 /data/cert.crt &&
+        chown 999 /data/cert.crt; /usr/local/bin/docker-entrypoint.sh mongod
+        --bind_ip_all --keyFile /data/cert.crt --replSet rs0
     healthcheck:
-      test:
-        - CMD-SHELL
-        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
-      timeout: 45s
+      test: "test $$(mongosh --quiet -u  $${MONGO_INITDB_ROOT_USERNAME} -p
+        $${MONGO_INITDB_ROOT_PASSWORD} --eval \"try { rs.initiate({ _id: 'rs0',
+        members: [{ _id: 0, host: 'db' }] }).ok } catch (_) { rs.status().ok
+        }\") -eq 1"
+      start_period: 5s
       interval: 10s
-      retries: 10
+      timeout: 10s
+    volumes:
+      - mongo:/var/lib/mongosql/data
 volumes:
-  postgres: ~
+  mongo: ~
