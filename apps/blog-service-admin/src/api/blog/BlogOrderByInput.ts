@@ -5,8 +5,8 @@ export type BlogOrderByInput = {
   content?: SortOrder;
   createdAt?: SortOrder;
   id?: SortOrder;
+  name?: SortOrder;
   publication?: SortOrder;
-  publishedAt?: SortOrder;
-  title?: SortOrder;
+  publishedDate?: SortOrder;
   updatedAt?: SortOrder;
 };

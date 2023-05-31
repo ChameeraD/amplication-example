@@ -13,9 +13,9 @@ export const BlogCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Author" source="author" />
         <TextInput label="Content" multiline source="content" />
+        <TextInput label="Name" source="name" />
         <TextInput label="Publication" source="publication" />
-        <DateTimeInput label="Published At" source="publishedAt" />
-        <TextInput label="Title" source="title" />
+        <DateTimeInput label="Published Date" source="publishedDate" />
       </SimpleForm>
     </Create>
   );

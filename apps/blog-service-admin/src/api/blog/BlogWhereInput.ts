@@ -6,7 +6,7 @@ export type BlogWhereInput = {
   author?: StringNullableFilter;
   content?: StringNullableFilter;
   id?: StringFilter;
+  name?: StringNullableFilter;
   publication?: StringNullableFilter;
-  publishedAt?: DateTimeNullableFilter;
-  title?: StringNullableFilter;
+  publishedDate?: DateTimeNullableFilter;
 };

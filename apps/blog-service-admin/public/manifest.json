@@ -1,6 +1,6 @@
 {
-  "short_name": "Blog Service",
-  "name": "Blog Service",
+  "short_name": "BlogService",
+  "name": "BlogService",
   "icons": [
     {
       "src": "favicon.ico",

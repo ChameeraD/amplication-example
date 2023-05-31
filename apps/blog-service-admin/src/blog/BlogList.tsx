@@ -16,9 +16,9 @@ export const BlogList = (props: ListProps): React.ReactElement => {
         <TextField label="Content" source="content" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
+        <TextField label="Name" source="name" />
         <TextField label="Publication" source="publication" />
-        <TextField label="Published At" source="publishedAt" />
-        <TextField label="Title" source="title" />
+        <TextField label="Published Date" source="publishedDate" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

@@ -11,12 +11,14 @@
     "db:migrate-save": "prisma migrate dev",
     "db:migrate-up": "prisma migrate deploy",
     "db:clean": "ts-node scripts/clean.ts",
-    "db:init": "run-s \"db:migrate-save -- --name 'initial version'\" db:migrate-up seed",
+    "db:init": "run-s seed",
     "prisma:generate": "prisma generate",
     "docker:db": "docker-compose -f docker-compose.db.yml up -d",
-    "docker:build": "docker build .",
+    "package:container": "docker build .",
     "compose:up": "docker-compose up -d",
-    "compose:down": "docker-compose down --volumes"
+    "compose:down": "docker-compose down --volumes",
+    "prisma:pull": "prisma db pull",
+    "prisma:push": " prisma db push"
   },
   "dependencies": {
     "@nestjs/common": "8.4.7",
@@ -35,7 +37,6 @@
     "graphql-type-json": "0.3.2",
     "nest-access-control": "2.0.3",
     "nest-morgan": "1.0.1",
-    "nestjs-prisma": "0.19.0",
     "npm-run-all": "4.1.5",
     "reflect-metadata": "0.1.13",
     "swagger-ui-express": "4.3.0",
