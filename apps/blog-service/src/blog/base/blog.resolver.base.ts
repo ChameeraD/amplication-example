@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreateBlogArgs } from "./CreateBlogArgs";
 import { UpdateBlogArgs } from "./UpdateBlogArgs";
 import { DeleteBlogArgs } from "./DeleteBlogArgs";
+import { BlogCountArgs } from "./BlogCountArgs";
 import { BlogFindManyArgs } from "./BlogFindManyArgs";
 import { BlogFindUniqueArgs } from "./BlogFindUniqueArgs";
 import { Blog } from "./Blog";
@@ -41,15 +42,11 @@ export class BlogResolverBase {
     possession: "any",
   })
   async _blogsMeta(
-    @graphql.Args() args: BlogFindManyArgs
+    @graphql.Args() args: BlogCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 

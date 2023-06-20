@@ -15,8 +15,8 @@ import { Prisma, Blog } from "@prisma/client";
 export class BlogServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.BlogFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BlogFindManyArgs>
+  async count<T extends Prisma.BlogCountArgs>(
+    args: Prisma.SelectSubset<T, Prisma.BlogCountArgs>
   ): Promise<number> {
     return this.prisma.blog.count(args);
   }
