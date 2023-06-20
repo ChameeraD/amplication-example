@@ -12,6 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { PublicationWhereInput } from "./PublicationWhereInput";
+import { IsOptional, ValidateNested, IsInt } from "class-validator";
 import { Type } from "class-transformer";
 import { PublicationOrderByInput } from "./PublicationOrderByInput";
 
@@ -21,6 +22,8 @@ class PublicationFindManyArgs {
     required: false,
     type: () => PublicationWhereInput,
   })
+  @IsOptional()
+  @ValidateNested()
   @Field(() => PublicationWhereInput, { nullable: true })
   @Type(() => PublicationWhereInput)
   where?: PublicationWhereInput;
@@ -29,6 +32,8 @@ class PublicationFindManyArgs {
     required: false,
     type: [PublicationOrderByInput],
   })
+  @IsOptional()
+  @ValidateNested({ each: true })
   @Field(() => [PublicationOrderByInput], { nullable: true })
   @Type(() => PublicationOrderByInput)
   orderBy?: Array<PublicationOrderByInput>;
@@ -37,6 +42,8 @@ class PublicationFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   skip?: number;
@@ -45,6 +52,8 @@ class PublicationFindManyArgs {
     required: false,
     type: Number,
   })
+  @IsOptional()
+  @IsInt()
   @Field(() => Number, { nullable: true })
   @Type(() => Number)
   take?: number;

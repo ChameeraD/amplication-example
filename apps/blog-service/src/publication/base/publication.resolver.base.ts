@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreatePublicationArgs } from "./CreatePublicationArgs";
 import { UpdatePublicationArgs } from "./UpdatePublicationArgs";
 import { DeletePublicationArgs } from "./DeletePublicationArgs";
+import { PublicationCountArgs } from "./PublicationCountArgs";
 import { PublicationFindManyArgs } from "./PublicationFindManyArgs";
 import { PublicationFindUniqueArgs } from "./PublicationFindUniqueArgs";
 import { Publication } from "./Publication";
@@ -41,15 +42,11 @@ export class PublicationResolverBase {
     possession: "any",
   })
   async _publicationsMeta(
-    @graphql.Args() args: PublicationFindManyArgs
+    @graphql.Args() args: PublicationCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 

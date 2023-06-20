@@ -22,6 +22,7 @@ import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateReq
 import { CreateAuthorArgs } from "./CreateAuthorArgs";
 import { UpdateAuthorArgs } from "./UpdateAuthorArgs";
 import { DeleteAuthorArgs } from "./DeleteAuthorArgs";
+import { AuthorCountArgs } from "./AuthorCountArgs";
 import { AuthorFindManyArgs } from "./AuthorFindManyArgs";
 import { AuthorFindUniqueArgs } from "./AuthorFindUniqueArgs";
 import { Author } from "./Author";
@@ -41,15 +42,11 @@ export class AuthorResolverBase {
     possession: "any",
   })
   async _authorsMeta(
-    @graphql.Args() args: AuthorFindManyArgs
+    @graphql.Args() args: AuthorCountArgs
   ): Promise<MetaQueryPayload> {
-    const results = await this.service.count({
-      ...args,
-      skip: undefined,
-      take: undefined,
-    });
+    const result = await this.service.count(args);
     return {
-      count: results,
+      count: result,
     };
   }
 
