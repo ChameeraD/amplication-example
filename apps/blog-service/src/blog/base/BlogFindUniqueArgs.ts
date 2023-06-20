@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { BlogWhereUniqueInput } from "./BlogWhereUniqueInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class BlogFindUniqueArgs {
+  @ApiProperty({
+    required: true,
+    type: () => BlogWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => BlogWhereUniqueInput)
   @Field(() => BlogWhereUniqueInput, { nullable: false })
   where!: BlogWhereUniqueInput;
 }

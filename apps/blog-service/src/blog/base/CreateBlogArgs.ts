@@ -10,10 +10,19 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { ArgsType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { BlogCreateInput } from "./BlogCreateInput";
+import { ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
 
 @ArgsType()
 class CreateBlogArgs {
+  @ApiProperty({
+    required: true,
+    type: () => BlogCreateInput,
+  })
+  @ValidateNested()
+  @Type(() => BlogCreateInput)
   @Field(() => BlogCreateInput, { nullable: false })
   data!: BlogCreateInput;
 }
